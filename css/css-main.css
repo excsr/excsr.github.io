@@ -1,80 +1,421 @@
+/* 全局重置与基础配置（规范化+变量统一） */
+:root {
+  /* 主题色变量 - 保持原有蓝色系，增加层次 */
+  --primary-color: #0066cc;
+  --primary-light: #3399ff;
+  --primary-dark: #004499;
+  --secondary-color: #817ade;
+  --secondary-light: #a39ef0;
+  --bg-light: hsl(223, 73%, 84%);
+  --text-dark: #130c0a;
+  --text-light: #f1f2f3;
+  --border-radius: 8px;
+  --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --transition-base: all 0.3s ease; /* 统一过渡动画，增加灵动感 */
+}
+
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box; /* 盒模型优化 */
 }
+
+body {
+  font-family: "Microsoft Yahei", "PingFang SC", sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: #f8f9fa;
+  padding-bottom: 50px;
+}
+
+/* 基础文本标签 */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-color);
+  margin: 16px 0;
+  transition: var(--transition-base); /* 标题hover动画 */
+}
+
+h1 {
+  font-size: 48px;
+  margin-left: 20px;
+  border-left: 6px solid var(--primary-color);
+  padding-left: 15px;
+}
+
 h2 {
-    color:blue;
-    margin:0px 0px 0px 100px
+  font-size: 40px;
+  margin-left: 100px;
+  position: relative;
 }
+
+h2::after {
+  /* 装饰线增加灵动感 */
+  content: "";
+  display: block;
+  width: 80px;
+  height: 3px;
+  background-color: var(--primary-light);
+  margin-top: 8px;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+h2:hover::after {
+  width: 120px;
+}
+
+h3 { font-size: 32px; }
+h4 { font-size: 28px; }
+h5 { font-size: 24px; }
+h6 {
+  font-size: 40px;
+  margin-top: 30px;
+  margin-left: 100px;
+}
+
 p {
-    font-size:36px;
-    color:rgb(19, 12, 10);
+  font-size: 18px;
+  color: var(--text-dark);
+  margin: 12px 20px;
+  line-height: 1.8;
 }
+
+/* 列表标签 */
+ul, ol {
+  margin: 15px 40px;
+  padding-left: 20px;
+}
+
+li {
+  font-size: 18px;
+  margin: 8px 0;
+  position: relative;
+  padding-left: 8px;
+  transition: var(--transition-base);
+}
+
+li:hover {
+  padding-left: 12px;
+  color: var(--primary-dark);
+}
+
+ul li::before {
+  /* 自定义列表符号，增加灵动感 */
+  content: "•";
+  color: var(--primary-light);
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+ol li {
+  list-style-type: decimal-leading-zero;
+}
+
+/* 链接与交互标签 */
 a {
-    color:rgb(241, 242, 243);
-    text-decoration: none;
+  color: var(--text-light);
+  text-decoration: none;
+  transition: var(--transition-base);
+  position: relative;
 }
-a:hover {
-    text-decoration: underline;
-    color:rgb(60, 17, 160);
-}/*当光标位于链接上时*/
 
-header a {
-    color:rgb(241, 242, 243);
-    text-decoration: none;
-    font-size:24px;
-    position:relative;/*位置*/
-    left:40vw;
-    bottom: 100px;
+/* 通用链接样式（非header/footer） */
+main a {
+  color: var(--primary-color);
+  font-weight: 500;
 }
-header a:hover {
-    text-decoration: underline;
-    color:rgb(135, 156, 229);
-}/*当光标位于链接上时*/
 
-/*
-margin
-上 右 下 左
-上 左右 下
-上下 左右
-上下左右
+main a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary-light);
+  transition: width 0.3s ease;
+}
 
-写在一起表示不同方位值为同值
-*/
-header,footer{
-    background-color: blue;
-    color:white;
-    font-size: 40px;
-    text-align: center;
-    /*margin: 50px auto;
-    margin-bottom: 50px auto;
-    */padding:15px;
-    /*border-bottom:1px solid #eee*/
+main a:hover {
+  color: var(--primary-dark);
+  text-decoration: none;
 }
-footer {
-    margin:50px 0px 0px 0px
+
+main a:hover::after {
+  width: 100%;
 }
+
+/* 表格标签 */
+table {
+  width: 90%;
+  margin: 20px auto;
+  border-collapse: collapse;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+th, td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background-color: var(--primary-color);
+  color: white;
+  font-weight: 600;
+}
+
+tr {
+  transition: var(--transition-base);
+}
+
+tr:hover {
+  background-color: rgba(0, 102, 204, 0.05);
+}
+
+tr:last-child td {
+  border-bottom: none;
+}
+
+/* 表单标签 */
+input, textarea, select, button {
+  font-size: 16px;
+  padding: 10px 12px;
+  border: 2px solid #ddd;
+  border-radius: var(--border-radius);
+  margin: 8px 20px;
+  transition: var(--transition-base);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary-light);
+  box-shadow: 0 0 0 3px rgba(51, 153, 255, 0.2);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px 24px;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+}
+
+button:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 多媒体标签 */
+img, video, audio {
+  max-width: 90%;
+  margin: 20px auto;
+  display: block;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
+}
+
+img:hover, video:hover {
+  transform: scale(1.02);
+  box-shadow: var(--shadow-md);
+}
+
+/* 语义化布局标签 */
+header, footer {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 40px;
+  text-align: center;
+  padding: 20px 15px; /* 优化内边距 */
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-base);
+}
+
 header {
-    margin:0px 0px 20px 0px;
+  margin: 0 0 20px 0;
+  position: relative;
 }
+
+header:hover {
+  background-color: var(--primary-dark);
+}
+
+footer {
+  margin: 50px 0 0 0;
+  font-size: 24px;
+  padding: 20px;
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+}
+
 section {
-    background-color:hsl(223, 73%, 84%);
-    border: 2px rgb(129, 122, 237) solid;
-    /*solid直线
-    dashed虚线*/
-    margin:10px 100px 20px;
+  background-color: var(--bg-light);
+  border: 2px solid var(--secondary-color);
+  border-radius: var(--border-radius);
+  margin: 10px 100px 20px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
 }
-/*sec section模块class*/
-/*单独调用
-<element class="sec"><h6>算法竞赛笔记</h6>
-*/
-.sec li{
-    margin:5px 40px;
-    font-size:18px
+
+section:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: var(--secondary-light);
 }
-.sec h6{
-    color: blue;
-    font-size: 40px;
-    margin-top:30px;
-    margin-left:100px;
+
+article {
+  background-color: white;
+  margin: 15px 20px;
+  padding: 20px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+aside {
+  width: 300px;
+  background-color: rgba(130, 122, 237, 0.1);
+  padding: 15px;
+  border-left: 4px solid var(--secondary-color);
+  margin: 20px;
+  float: right;
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+nav {
+  margin: 10px 0;
+}
+
+nav a {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 5px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* 特殊标签 */
+blockquote {
+  margin: 20px 40px;
+  padding: 15px 20px;
+  border-left: 4px solid var(--primary-light);
+  background-color: rgba(0, 102, 204, 0.05);
+  font-style: italic;
+  color: #555;
+}
+
+code, pre {
+  font-family: "Consolas", "Monaco", monospace;
+  background-color: #f1f1f1;
+  border-radius: 4px;
+}
+
+code {
+  padding: 2px 6px;
+  font-size: 16px;
+  color: var(--primary-dark);
+}
+
+pre {
+  padding: 15px;
+  margin: 15px 20px;
+  overflow-x: auto;
+  border-left: 4px solid var(--secondary-color);
+}
+
+hr {
+  border: none;
+  height: 2px;
+  background-color: var(--primary-light);
+  opacity: 0.3;
+  margin: 30px 100px;
+  border-radius: 1px;
+}
+
+/* 原有自定义类样式增强 */
+.sec {
+  /* 继承section基础样式，增加专属特性 */
+  background-color: rgba(130, 122, 237, 0.08);
+}
+
+.sec li {
+  margin: 5px 40px;
+  font-size: 18px;
+}
+
+.sec h6 {
+  color: var(--primary-color);
+  font-size: 40px;
+  margin-top: 30px;
+  margin-left: 100px;
+  position: relative;
+}
+
+.sec h6::before {
+  content: "📌";
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Header内链接专属样式（保留原有位置逻辑） */
+header a {
+  color: var(--text-light);
+  font-size: 24px;
+  position: relative;
+  left: 40vw;
+  bottom: 100px;
+  padding: 8px 12px;
+}
+
+header a:hover {
+  text-decoration: underline;
+  color: #879ce5;
+  transform: scale(1.05);
+}
+
+/* 响应式适配（增加灵动感的同时适配不同设备） */
+@media (max-width: 768px) {
+  h2, .sec h6 {
+    margin-left: 20px;
+    font-size: 32px;
+  }
+  
+  section {
+    margin: 10px 20px 20px;
+  }
+  
+  header a {
+    left: 0;
+    bottom: 0;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  aside {
+    width: 100%;
+    float: none;
+    margin: 20px auto;
+  }
+  
+  table {
+    width: 100%;
+  }
 }
