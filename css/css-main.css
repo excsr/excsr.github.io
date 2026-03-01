@@ -1,0 +1,80 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+h2 {
+    color:blue;
+    margin:0px 0px 0px 100px
+}
+p {
+    font-size:36px;
+    color:rgb(19, 12, 10);
+}
+a {
+    color:rgb(241, 242, 243);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    color:rgb(60, 17, 160);
+}/*当光标位于链接上时*/
+
+header a {
+    color:rgb(241, 242, 243);
+    text-decoration: none;
+    font-size:24px;
+    position:relative;/*位置*/
+    left:40vw;
+    bottom: 100px;
+}
+header a:hover {
+    text-decoration: underline;
+    color:rgb(135, 156, 229);
+}/*当光标位于链接上时*/
+
+/*
+margin
+上 右 下 左
+上 左右 下
+上下 左右
+上下左右
+
+写在一起表示不同方位值为同值
+*/
+header,footer{
+    background-color: blue;
+    color:white;
+    font-size: 40px;
+    text-align: center;
+    /*margin: 50px auto;
+    margin-bottom: 50px auto;
+    */padding:15px;
+    /*border-bottom:1px solid #eee*/
+}
+footer {
+    margin:50px 0px 0px 0px
+}
+header {
+    margin:0px 0px 20px 0px;
+}
+section {
+    background-color:hsl(223, 73%, 84%);
+    border: 2px rgb(129, 122, 237) solid;
+    /*solid直线
+    dashed虚线*/
+    margin:10px 100px 20px;
+}
+/*sec section模块class*/
+/*单独调用
+<element class="sec"><h6>算法竞赛笔记</h6>
+*/
+.sec li{
+    margin:5px 40px;
+    font-size:18px
+}
+.sec h6{
+    color: blue;
+    font-size: 40px;
+    margin-top:30px;
+    margin-left:100px;
+}
